@@ -1,8 +1,7 @@
 #/usr/bin/env bash
-# file: guessinggae.sh
+# file: guessinggame.sh
 
 function countfiles(){
-  #statements
   echo $(find . -type f | wc -c)
 
 }
@@ -13,15 +12,26 @@ echo filecount is $count
 getout=1
 while [[ $getout -ne 0 ]]
 do
+  echo
   echo "how many files are there?"
   read response
-  echo "you entered $response"
-  let getout=$response
+  re='^[0-9]+$'
+  if ! [[ $response =~ $re ]]
+  then
+     echo "But that's not a number, try again?"
+  else
+    if [[ $response -eq $count ]]
+      then
+      let getout=0
+    else
+      if [[ $response -gt $count ]]
+        then
+        echo "There are fewer files, let's try again"
+      else
+        echo "There are more files then that, try again"
+      fi
+    fi #number comparison
+  fi #main loop
 done
 
-if [[ $1 =~ ^[ABCD] ]]
-then
-  echo "A B C D"
-else
-  echo "it is not"
-fi
+echo "That's corret, congratulations!!"
