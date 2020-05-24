@@ -2,12 +2,11 @@
 # file: guessinggame.sh
 
 function countfiles(){
-  echo $(find . -type f | wc -c)
+  echo $(ls -1 | wc -l)
 
 }
 
 count=$(countfiles)
-echo filecount is $count
 
 getout=1
 while [[ $getout -ne 0 ]]
@@ -34,4 +33,4 @@ do
   fi #main loop
 done
 
-echo "That's corret, congratulations!!"
+echo "That's correct, congratulations!!"
